@@ -26,8 +26,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-channel = grpc.aio.insecure_channel(config('GRPC_HOST'))
-grpc_stub = giveaway_pb2_grpc.GreeterStub(channel)
+async def get_grpc_stub():
+    channel = grpc.aio.insecure_channel(config('GRPC_HOST'))
+    return giveaway_pb2_grpc.GreeterStub(channel)
 
 def validate(hash_str, init_data, token, c_str="WebAppData"):
     init_data = sorted([ chunk.split("=")
@@ -53,6 +54,7 @@ async def index(item: Item):
 
     user = json.loads(initData['user'])
 
+    grpc_stub = await get_grpc_stub()
     response = await grpc_stub.GetGiveaway(giveaway_pb2.GiveawayRequest(initData=json.dumps(initData)))
     response = json.loads(response.json_message)
 
