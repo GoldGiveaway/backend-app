@@ -34,8 +34,13 @@ class GreeterStub(object):
         Args:
             channel: A grpc.Channel.
         """
-        self.SayGiveaway = channel.unary_unary(
-                '/giveaway.Greeter/SayGiveaway',
+        self.GetGiveaway = channel.unary_unary(
+                '/giveaway.Greeter/GetGiveaway',
+                request_serializer=giveaway__pb2.GiveawayRequest.SerializeToString,
+                response_deserializer=giveaway__pb2.GiveawayReply.FromString,
+                _registered_method=True)
+        self.ParticipatingGiveaway = channel.unary_unary(
+                '/giveaway.Greeter/ParticipatingGiveaway',
                 request_serializer=giveaway__pb2.GiveawayRequest.SerializeToString,
                 response_deserializer=giveaway__pb2.GiveawayReply.FromString,
                 _registered_method=True)
@@ -44,7 +49,13 @@ class GreeterStub(object):
 class GreeterServicer(object):
     """Missing associated documentation comment in .proto file."""
 
-    def SayGiveaway(self, request, context):
+    def GetGiveaway(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def ParticipatingGiveaway(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -53,8 +64,13 @@ class GreeterServicer(object):
 
 def add_GreeterServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'SayGiveaway': grpc.unary_unary_rpc_method_handler(
-                    servicer.SayGiveaway,
+            'GetGiveaway': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetGiveaway,
+                    request_deserializer=giveaway__pb2.GiveawayRequest.FromString,
+                    response_serializer=giveaway__pb2.GiveawayReply.SerializeToString,
+            ),
+            'ParticipatingGiveaway': grpc.unary_unary_rpc_method_handler(
+                    servicer.ParticipatingGiveaway,
                     request_deserializer=giveaway__pb2.GiveawayRequest.FromString,
                     response_serializer=giveaway__pb2.GiveawayReply.SerializeToString,
             ),
@@ -70,7 +86,7 @@ class Greeter(object):
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
-    def SayGiveaway(request,
+    def GetGiveaway(request,
             target,
             options=(),
             channel_credentials=None,
@@ -83,7 +99,34 @@ class Greeter(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/giveaway.Greeter/SayGiveaway',
+            '/giveaway.Greeter/GetGiveaway',
+            giveaway__pb2.GiveawayRequest.SerializeToString,
+            giveaway__pb2.GiveawayReply.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def ParticipatingGiveaway(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/giveaway.Greeter/ParticipatingGiveaway',
             giveaway__pb2.GiveawayRequest.SerializeToString,
             giveaway__pb2.GiveawayReply.FromString,
             options,

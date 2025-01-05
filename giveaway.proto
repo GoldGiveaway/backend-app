@@ -3,12 +3,12 @@ syntax = "proto3";
 package giveaway;
 
 service Greeter {
-    rpc SayGiveaway (GiveawayRequest) returns (GiveawayReply) {}
+    rpc GetGiveaway (GiveawayRequest) returns (GiveawayReply) {}
+    rpc ParticipatingGiveaway (GiveawayRequest) returns (GiveawayReply) {}
 }
 
 message GiveawayRequest {
-    string token = 1;
-    string initData = 2;
+    string initData = 1;
 }
 
 message GiveawayReply {

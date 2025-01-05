@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0egiveaway.proto\x12\x08giveaway\"2\n\x0fGiveawayRequest\x12\r\n\x05token\x18\x01 \x01(\t\x12\x10\n\x08initData\x18\x02 \x01(\t\"%\n\rGiveawayReply\x12\x14\n\x0cjson_message\x18\x01 \x01(\t2N\n\x07Greeter\x12\x43\n\x0bSayGiveaway\x12\x19.giveaway.GiveawayRequest\x1a\x17.giveaway.GiveawayReply\"\x00\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x0egiveaway.proto\x12\x08giveaway\"#\n\x0fGiveawayRequest\x12\x10\n\x08initData\x18\x01 \x01(\t\"%\n\rGiveawayReply\x12\x14\n\x0cjson_message\x18\x01 \x01(\t2\x9d\x01\n\x07Greeter\x12\x43\n\x0bGetGiveaway\x12\x19.giveaway.GiveawayRequest\x1a\x17.giveaway.GiveawayReply\"\x00\x12M\n\x15ParticipatingGiveaway\x12\x19.giveaway.GiveawayRequest\x1a\x17.giveaway.GiveawayReply\"\x00\x62\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -32,9 +32,9 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'giveaway_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
   DESCRIPTOR._loaded_options = None
   _globals['_GIVEAWAYREQUEST']._serialized_start=28
-  _globals['_GIVEAWAYREQUEST']._serialized_end=78
-  _globals['_GIVEAWAYREPLY']._serialized_start=80
-  _globals['_GIVEAWAYREPLY']._serialized_end=117
-  _globals['_GREETER']._serialized_start=119
-  _globals['_GREETER']._serialized_end=197
+  _globals['_GIVEAWAYREQUEST']._serialized_end=63
+  _globals['_GIVEAWAYREPLY']._serialized_start=65
+  _globals['_GIVEAWAYREPLY']._serialized_end=102
+  _globals['_GREETER']._serialized_start=105
+  _globals['_GREETER']._serialized_end=262
 # @@protoc_insertion_point(module_scope)
