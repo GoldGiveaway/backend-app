@@ -8,4 +8,4 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-ENTRYPOINT fastapi run main.py
+ENTRYPOINT fastapi run main.py --port 8000
